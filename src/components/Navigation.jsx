@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { animalAtom } from "../recoil/atoms";
 
 function Navigation() {
+  const setCurAnimal = useSetRecoilState(animalAtom);
+  const dogRef = useRef();
+
+  const foxRef = useRef();
+  const handleDogClick = () => {
+    setCurAnimal(dogRef.current.innerHTML);
+  };
+
+  const handleFoxClick = () => {
+    setCurAnimal(foxRef.current.innerHTML);
+  };
+  let activeStyle = {
+    textDecoration: "underline",
+  };
+
   return (
     <Navbar>
       <ul>
@@ -10,13 +28,26 @@ function Navigation() {
           <FontAwesomeIcon icon="dog" size="3x" />
         </li>
         <li>
-          <a href="#">Home</a>
+          <NavLink
+            to="dog"
+            value="dog"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            ref={dogRef}
+            onClick={handleDogClick}
+          >
+            Dog
+          </NavLink>
         </li>
         <li>
-          <a href="#">Duck</a>
-        </li>
-        <li>
-          <a href="#">Fox</a>
+          <NavLink
+            to="fox"
+            value="fox"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            ref={foxRef}
+            onClick={handleFoxClick}
+          >
+            Fox
+          </NavLink>
         </li>
       </ul>
     </Navbar>

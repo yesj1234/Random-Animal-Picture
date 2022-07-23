@@ -1,5 +1,5 @@
-import React from "react";
-import Dog from "./components/Dog";
+import React, { useState } from "react";
+import Animal from "./routes/Animal";
 import Navigation from "./components/Navigation";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ function App() {
     <Container>
       <Navigation></Navigation>
       <PictureContainer>
-        <Dog></Dog>
+        <Animal></Animal>
       </PictureContainer>
     </Container>
   );
